@@ -1,0 +1,59 @@
+.animatedMessage h2 {
+  overflow: hidden;
+  border-right: 0.15em solid #ffcc00;
+  white-space: nowrap;
+  animation: typing 2s steps(30, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #ffcc00;
+  }
+}
+.continueButton {
+  padding: 1rem 1rem;
+  background-color: #ffcc00;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  align-items: center;
+}
+.animatedMessage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 50vh;
+  justify-content: center;
+  padding-left: 2rem;
+}
+@media screen and (max-width: 768px) {
+  .animatedMessage h2 {
+    font-size: 1.1rem;
+    animation: typing 1.6s steps(20, end), blink-caret 0.75s step-end infinite;
+  }
+
+  .continueButton {
+    font-size: 0.9rem;
+    padding: 0.8rem 1.6rem;
+  }
+
+  .animatedMessage {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    height: auto;
+    margin-top: 2rem;
+  }
+}

@@ -1,0 +1,130 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  font-family: "Segoe UI", sans-serif;
+  gap: 0.5rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 320px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.form input {
+  padding: 0.8rem;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-size: 1rem;
+  outline: none;
+}
+
+.form input::placeholder {
+  color: #ddd;
+}
+
+.loginButton {
+  padding: 0.8rem;
+  background-color: #ff9500;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.loginButton:hover {
+  background-color: #ff7700;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #eee;
+}
+
+.textLinkButton {
+  margin-left: 0.2rem;
+  background: none;
+  border: none;
+  color: #ff9500;
+  cursor: pointer;
+  padding: 0;
+  font: inherit;
+}
+.textLinkButton:hover {
+  text-decoration: underline;
+}
+
+.signUpLink {
+  color: #ff9500;
+  text-decoration: none;
+  font-weight: 500;
+  transition: text-decoration 0.2s ease;
+}
+
+.signUpLink:hover {
+  text-decoration: underline;
+}
+
+.buttons button {
+  font-size: 0.9rem;
+}
+
+.subtitle {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  color: #dddddd;
+}
+.infoButton {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  padding: 1rem 1rem;
+  background-color: inherit;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  align-items: center;
+}
+
+.infoButton:hover {
+  transform: scale(1.2);
+}
+.tmdbattribution {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #999;
+  margin-top: 2rem;
+}

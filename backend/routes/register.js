@@ -6,23 +6,46 @@ const router = express.Router();
 const db = require("../models");
 const sendVerificationEmail = require("../utils/send_mail");
 const User = db.User;
-console.log("`User` model in register.js:", User);
+
+const {
+  isSafeStringArray,
+  validateEmail,
+  validatePassword,
+} = require("../middleware/validateInput");
 
 router.post("/", async (req, res) => {
   try {
     const {
-      name,
-      surname,
       email,
-      country,
       password,
       favoriteDirectors,
       favoriteActors,
       favoriteGenres,
     } = req.body;
 
-    if (!name || !surname || !email || !password || !country) {
-      return res.status(400).json({ message: "All fields are required" });
+    if (!validateEmail(email)) {
+      return res.status(400).json({ message: "Invalid email format" });
+    }
+
+    if (!validatePassword(password)) {
+      return res
+        .status(400)
+        .json({ message: "Password must be 6–100 characters and safe." });
+    }
+
+    if (
+      !isSafeStringArray(favoriteDirectors) ||
+      !isSafeStringArray(favoriteActors) ||
+      !isSafeStringArray(favoriteGenres)
+    ) {
+      return res.status(400).json({ message: "Invalid data in preferences." });
+    }
+    if (
+      favoriteActors?.length > 33 ||
+      favoriteDirectors?.length > 22 ||
+      favoriteGenres?.length > 12
+    ) {
+      return res.status(400).json({ message: "Too many preferences." });
     }
 
     const existingUser = await User.findOne({ where: { email } });
@@ -34,11 +57,8 @@ router.post("/", async (req, res) => {
     const code = Math.floor(100000 + Math.random() * 899999).toString();
 
     const user = await User.create({
-      name,
-      surname,
       email,
       password: hashedPassword,
-      country,
       favoriteDirectors: Array.isArray(favoriteDirectors)
         ? favoriteDirectors
         : [],
@@ -54,17 +74,13 @@ router.post("/", async (req, res) => {
       { expiresIn: "7d" }
     );
 
-    console.log(code);
     await sendVerificationEmail(user.email, code);
 
     res.status(201).json({
       message: "User registered successfully",
       user: {
         id: user.id,
-        name: user.name,
-        surname: user.surname,
         email: user.email,
-        country: user.country,
         favoriteDirectors: user.favoriteDirectors,
         favoriteActors: user.favoriteActors,
         favoriteGenres: user.favoriteGenres,

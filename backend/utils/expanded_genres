@@ -1,0 +1,14 @@
+const EXPANDED_GENRES = {
+  Animation: ["Family", "Adventure", "Fantasy"],
+  Drama: ["Romance", "Thriller", "History"],
+  Romance: ["Drama", "Comedy"],
+  "Sci-Fi": ["Action", "Adventure", "Fantasy"],
+  Horror: ["Thriller", "Mystery"],
+  Action: ["Thriller", "Adventure"],
+  Comedy: ["Animation", "Romance", "Drama"],
+  Fantasy: ["Sci-Fi", "Adventure"],
+  "Film-Noir": ["Crime", "Thriller"],
+  Classic: ["Drama", "History"],
+  Music: ["Drama", "Comedy"],
+};
+module.exports = EXPANDED_GENRES;

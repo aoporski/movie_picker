@@ -128,3 +128,45 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+
+# Systemowe (macOS)
+.DS_Store
+
+# Node.js / Express / Next.js
+node_modules/
+package-lock.json
+npm-debug.log*
+yarn.lock
+.env
+.env.*
+
+# Build / Output / Logs
+dist/
+build/
+.next/
+out/
+coverage/
+logs/
+*.log
+
+# Redis dump
+dump.rdb
+
+# PM2 / process manager
+pids/
+*.pid
+
+# Database backups
+*.sqlite
+*.db
+
+# Optional: IDE / Editor
+.vscode/
+.idea/
+*.swp
+
+
+# Custom generated files
+frontend/next.config.js
+

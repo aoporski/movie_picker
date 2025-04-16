@@ -1,0 +1,126 @@
+.feedbackContainer {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  padding: 1rem;
+  gap: 5rem;
+  text-align: center;
+  align-items: center;
+  overflow: hidden;
+  max-height: calc(100vh - 150px);
+}
+
+.button {
+  padding: 0.5rem 1.25rem;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 0.5rem;
+}
+
+.button:hover {
+  transform: scale(1.05);
+}
+
+.liked {
+  background-color: #5e7f38;
+  color: white;
+}
+
+.disliked {
+  background-color: #6e2c27;
+  color: white;
+}
+
+.ok {
+  background-color: #ffee0061;
+  color: white;
+}
+
+.thisOne {
+  background-color: #5e7f38;
+  color: white;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 330px;
+}
+
+.poster {
+  width: 330px;
+  height: 480px;
+  object-fit: cover;
+  display: block;
+  max-width: 330px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  text-align: center;
+  color: #aaa;
+  margin-bottom: 1rem;
+}
+
+.description {
+  text-align: center;
+  line-height: 1.5;
+  color: #ddd;
+  max-width: 600px;
+  margin: 0 auto;
+  min-height: 100px;
+}
+
+@media screen and (max-width: 768px) {
+  .feedbackContainer {
+    gap: 1rem;
+    display: flex;
+    align-items: flex-start;
+  }
+  .poster {
+    width: 50vw;
+    height: 30vh;
+    max-width: 300px;
+  }
+
+  .buttonGroup {
+    flex-direction: column;
+    width: 100%;
+    max-width: 50vw;
+    align-items: center;
+  }
+
+  .button {
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  .description {
+    max-width: 50vw;
+    width: 100%;
+    font-size: 0.85rem;
+  }
+
+  .title {
+    font-size: 1.05rem;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 0.2rem;
+  }
+  .button:hover {
+    transform: scale(1.02);
+  }
+}

@@ -32,10 +32,29 @@ fs.readdirSync(__dirname)
     db[model.name] = model;
   });
 
+  Object.keys(db).forEach((modelName) => {
+    if (db[modelName].associate) {
+      db[modelName].associate(db);
+    }
+  });
+
+
 if (!db.User) {
   console.error("`User` model not loaded!");
 } else {
   console.log("`User` model successfully loaded!");
+}
+
+if (!db.UserPreferences) {
+  console.error("`UserPreferences` model not loaded!");
+} else {
+  console.log("`UserPreferences` model successfully loaded!");
+}
+
+if (!db.SavedForLater) {
+  console.error("`SaveForLater` model not loaded!");
+} else {
+  console.log("'SaveForLater' model successfully loaded!");
 }
 
 db.sequelize = sequelize;
