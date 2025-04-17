@@ -28,7 +28,7 @@ export const Navigation = () => {
         console.log("userId", userId);
 
         const response = await fetch(
-          `http://localhost:3000/api/decision?userId=${userId}`
+          `${process.env.NEXT_PUBLIC_API_URL}/api/decision?userId=${userId}`
         );
         if (!response.ok) throw new Error("Error fetching recommendations");
 

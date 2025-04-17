@@ -23,7 +23,7 @@ const EditPreferences = () => {
     const fetchPreferences = async () => {
       try {
         const res = await fetch(
-          `http://localhost:3000/api/register-pref/preferences?userId=${userId}`
+          `${process.env.NEXT_PUBLIC_API_URL}/api/register-pref/preferences?userId=${userId}`
         );
         const data = await res.json();
         setSelectedActors(data.actors || []);
@@ -47,7 +47,7 @@ const EditPreferences = () => {
     setLoading(true);
     try {
       const res = await fetch(
-        "http://localhost:3000/api/register-pref/preferences",
+        `${process.env.NEXT_PUBLIC_API_URL}/api/register-pref/preferences`,
         {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },

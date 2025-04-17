@@ -28,7 +28,7 @@ export default function SavedMovies() {
     const fetchSavedMovies = async () => {
       try {
         const res = await fetch(
-          `http://localhost:3000/api/saved?userId=${userId}`
+          `${process.env.NEXT_PUBLIC_API_URL}/api/saved?userId=${userId}`
         );
         const saved = await res.json();
 
@@ -116,7 +116,7 @@ export default function SavedMovies() {
               className={styles.deleteButton}
               onClick={async () => {
                 try {
-                  await fetch("http://localhost:3000/api/saved", {
+                  await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/saved`, {
                     method: "DELETE",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ userId, movieId: String(movie.id) }),

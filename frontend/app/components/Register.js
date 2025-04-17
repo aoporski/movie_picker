@@ -38,16 +38,19 @@ const RegisterForm = () => {
     onSubmit: async (values) => {
       setLoading(true);
       try {
-        const response = await fetch("http://localhost:3000/api/register", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            ...values,
-            favoriteActors: selectedActors,
-            favoriteDirectors: selectedDirectors,
-            favoriteGenres: selectedGenres,
-          }),
-        });
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/api/register`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              ...values,
+              favoriteActors: selectedActors,
+              favoriteDirectors: selectedDirectors,
+              favoriteGenres: selectedGenres,
+            }),
+          }
+        );
 
         const data = await response.json();
         if (!response.ok)
@@ -62,7 +65,7 @@ const RegisterForm = () => {
   const handleVerify = async () => {
     try {
       const response = await fetch(
-        "http://localhost:3000/api/register/verify",
+        `${process.env.NEXT_PUBLIC_API_URL}/api/register/verify`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

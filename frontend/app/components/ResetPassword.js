@@ -20,7 +20,7 @@ const ResetPassword = () => {
     e.preventDefault();
     try {
       const response = await fetch(
-        "http://localhost:3000/api/password-reset/reset",
+        `${process.env.NEXT_PUBLIC_API_URL}/api/password-reset/reset`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

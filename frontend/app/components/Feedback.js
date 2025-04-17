@@ -4,11 +4,26 @@ import Image from "next/image";
 import { jwtDecode } from "jwt-decode";
 import styles from "../styles/Feedback.module.css";
 import { useAuth } from "../hooks/auth_context";
+import { useEffect, useState } from "react";
 
 export default function Feedback({ movie, onFeedback }) {
   const { loading } = useAuth();
   const token = sessionStorage.getItem("token");
   const guestId = localStorage.getItem("guestId");
+
+  const [runtime, setRuntime] = useState(null);
+
+  useEffect(() => {
+    const fetchRuntime = async () => {
+      const res = await fetch(
+        `https://api.themoviedb.org/3/movie/${movie.id}?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
+      );
+      const data = await res.json();
+      setRuntime(data.runtime);
+    };
+
+    fetchRuntime();
+  }, [movie.id]);
 
   let userId = null;
   if (token) {
@@ -59,8 +74,8 @@ export default function Feedback({ movie, onFeedback }) {
 
       const res = await fetch(
         userId
-          ? "http://localhost:3000/api/feedback"
-          : "http://localhost:3000/api/guest-feedback",
+          ? `${process.env.NEXT_PUBLIC_API_URL}/api/feedback"`
+          : `${process.env.NEXT_PUBLIC_API_URL}/api/guest-feedback`,
         {
           method: "POST",
           headers: {
@@ -75,6 +90,7 @@ export default function Feedback({ movie, onFeedback }) {
               actors: actors || [],
               genres: genres || [],
               directors: directors || [],
+              runtime: runtime || null,
             },
           }),
         }
@@ -172,7 +188,9 @@ export default function Feedback({ movie, onFeedback }) {
       </div>
       <div className={styles.description}>
         <h2 className={styles.title}>{movie.title}</h2>
-        <p className={styles.subtitle}>{movie.release_date}</p>
+        <p className={styles.subtitle}>
+          {movie.release_date} • {runtime ? `${runtime} min` : "Loading..."}
+        </p>
         <p className={styles.description}>{movie.overview}</p>
       </div>
     </div>

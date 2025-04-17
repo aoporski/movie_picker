@@ -22,7 +22,9 @@ const GuestPreferencesForm = () => {
     const guestId = localStorage.getItem("guestId");
     if (!guestId) return;
 
-    fetch(`http://localhost:3000/api/guest-pref/has?guestId=${guestId}`)
+    fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/guest-pref/has?guestId=${guestId}`
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.hasPreferences) {
@@ -36,7 +38,9 @@ const GuestPreferencesForm = () => {
     const guestId = localStorage.getItem("guestId");
     if (!guestId || mode !== "edit") return;
 
-    fetch(`http://localhost:3000/api/guest-pref/preferences?guestId=${guestId}`)
+    fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/guest-pref/preferences?guestId=${guestId}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setSelectedActors(data.actors || []);
@@ -61,16 +65,19 @@ const GuestPreferencesForm = () => {
 
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:3000/api/guest-pref", {
-        method: mode === "edit" ? "PUT" : "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          guestId,
-          favoriteActors: selectedActors,
-          favoriteDirectors: selectedDirectors,
-          favoriteGenres: selectedGenres,
-        }),
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/guest-pref`,
+        {
+          method: mode === "edit" ? "PUT" : "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            guestId,
+            favoriteActors: selectedActors,
+            favoriteDirectors: selectedDirectors,
+            favoriteGenres: selectedGenres,
+          }),
+        }
+      );
 
       const data = await res.json();
       setMessage(data.message || "Preferences saved!");

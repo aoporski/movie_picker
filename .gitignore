@@ -136,6 +136,7 @@ dist
 # Node.js / Express / Next.js
 node_modules/
 package-lock.json
+backend/package-lock.json
 npm-debug.log*
 yarn.lock
 .env

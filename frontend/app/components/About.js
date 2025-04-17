@@ -22,6 +22,25 @@ const About = () => {
           your experience across devices and save your favorite movies for
           later.
         </p>
+        <p className={styles.text}>
+          Created by{" "}
+          <a
+            href="https://www.linkedin.com/in/adam-oporski-564784353/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Adam Oporski
+          </a>
+          . Check out the code on{" "}
+          <a
+            href="https://github.com/aoporski/movie_picker"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub
+          </a>
+          .
+        </p>
         <p className={styles.highlight}>
           🍿 The goal? Conflict-free movie nights. Every time.
         </p>

@@ -20,7 +20,7 @@ const GuestPage = () => {
       return;
     }
 
-    fetch("http://localhost:3000/api/decision", {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/decision`, {
       headers: { "x-guest-id": guestId },
     })
       .then((res) => res.json())
