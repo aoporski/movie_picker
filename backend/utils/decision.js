@@ -17,7 +17,7 @@ const feedbackWeights = {
   ok: 0.1,
   save_for_later: 0.8,
   disliked: -1.0,
-  not_this_one: -0.6,
+  not_this_one: -0.8,
 };
 
 const getExpandedItems = (items, expansionMap) => {

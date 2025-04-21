@@ -20,7 +20,7 @@ const validatePassword = (password) => {
   );
 };
 
-const isSafeStringArray = (arr, maxItems, maxLength = 100) => {
+const isSafeStringArray = (arr, maxItems=100, maxLength = 100) => {
   return (
     Array.isArray(arr) &&
     arr.length <= maxItems &&

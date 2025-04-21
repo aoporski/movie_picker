@@ -74,7 +74,7 @@ export default function Feedback({ movie, onFeedback }) {
 
       const res = await fetch(
         userId
-          ? `${process.env.NEXT_PUBLIC_API_URL}/api/feedback"`
+          ? `${process.env.NEXT_PUBLIC_API_URL}/api/feedback`
           : `${process.env.NEXT_PUBLIC_API_URL}/api/guest-feedback`,
         {
           method: "POST",
@@ -90,7 +90,6 @@ export default function Feedback({ movie, onFeedback }) {
               actors: actors || [],
               genres: genres || [],
               directors: directors || [],
-              runtime: runtime || null,
             },
           }),
         }

@@ -26,7 +26,7 @@ router.post("/", async (req, res) => {
       expiresIn: "15m",
     });
 
-    const resetLink = `http://localhost:3001/reset-password?token=${token}`;
+    const resetLink = `https://choosethemovie.com/reset-password?token=${token}`;
 
     await sendVerificationEmail(
       email,

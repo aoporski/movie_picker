@@ -15,6 +15,7 @@ const guestPrefRoutes = require("./routes/guestPreferences.js");
 const guestFeedbackRoutes = require("./routes/guestFeedback");
 
 const app = express();
+app.set("trust proxy", 1);
 
 const generalLimiter = rateLimit({
   windowMs: 10 * 60 * 1000,
