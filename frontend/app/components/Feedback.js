@@ -12,17 +12,31 @@ export default function Feedback({ movie, onFeedback }) {
   const guestId = localStorage.getItem("guestId");
 
   const [runtime, setRuntime] = useState(null);
+  const [directors, setDirectors] = useState([]);
 
   useEffect(() => {
-    const fetchRuntime = async () => {
-      const res = await fetch(
-        `https://api.themoviedb.org/3/movie/${movie.id}?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
-      );
-      const data = await res.json();
-      setRuntime(data.runtime);
+    const fetchMovieDetails = async () => {
+      const [runtimeRes, creditsRes] = await Promise.all([
+        fetch(
+          `https://api.themoviedb.org/3/movie/${movie.id}?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
+        ),
+        fetch(
+          `https://api.themoviedb.org/3/movie/${movie.id}/credits?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
+        ),
+      ]);
+
+      const runtimeData = await runtimeRes.json();
+      const credits = await creditsRes.json();
+
+      setRuntime(runtimeData.runtime);
+
+      const directorList = credits.crew
+        .filter((member) => member.job === "Director")
+        .map((d) => d.name);
+      setDirectors(directorList);
     };
 
-    fetchRuntime();
+    fetchMovieDetails();
   }, [movie.id]);
 
   let userId = null;
@@ -190,6 +204,9 @@ export default function Feedback({ movie, onFeedback }) {
         <p className={styles.subtitle}>
           {movie.release_date} • {runtime ? `${runtime} min` : "Loading..."}
         </p>
+        {directors.length > 0 && (
+          <p className={styles.subtitle}>Directed by {directors.join(", ")}</p>
+        )}
         <p className={styles.description}>{movie.overview}</p>
       </div>
     </div>
