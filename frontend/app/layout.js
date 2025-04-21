@@ -12,13 +12,6 @@ export default function RootLayout({ children }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="UTF-8" />
         <link rel="icon" href="/favicon.ico" />
-
-        <script async src={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}></script>
-        <script>
-          window.dataLayer = window.dataLayer || []; function gtag()
-          {dataLayer.push(arguments)}
-          gtag('js', new Date()); gtag('config', 'G-Y08HWP1WLL');
-        </script>
       </head>
       <body>
         <AuthProvider>{children}</AuthProvider>
