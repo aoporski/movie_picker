@@ -22,7 +22,7 @@ const About = () => {
           your experience across devices and save your favorite movies for
           later.
         </p>
-        <p className={styles.text}>
+        <p className={styles.text_github}>
           <a
             href="https://github.com/aoporski/movie_picker"
             target="_blank"

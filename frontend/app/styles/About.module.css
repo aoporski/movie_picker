@@ -41,9 +41,13 @@
   font-size: 1.1rem;
   line-height: 1.7;
   margin-bottom: 1.2rem;
-  color: #ffcc00;
 }
-.text_github:hover {
+.text_github a {
+  color: #ffcc00;
+  text-decoration: none;
+  transition: text-decoration 0.2s ease-in-out;
+}
+.text_github a:hover {
   text-decoration: underline;
 }
 
